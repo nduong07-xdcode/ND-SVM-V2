@@ -1,0 +1,202 @@
+{
+    "linear": {
+        "accuracy": 1.0,
+        "macro_avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0
+        },
+        "per_class": {
+            "setosa": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1_score": 1.0,
+                "support": 10
+            },
+            "versicolor": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1_score": 1.0,
+                "support": 10
+            },
+            "virginica": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1_score": 1.0,
+                "support": 10
+            }
+        },
+        "confusion_matrix": [
+            [
+                10,
+                0,
+                0
+            ],
+            [
+                0,
+                10,
+                0
+            ],
+            [
+                0,
+                0,
+                10
+            ]
+        ],
+        "classes": [
+            "setosa",
+            "versicolor",
+            "virginica"
+        ]
+    },
+    "rbf": {
+        "accuracy": 0.9667,
+        "macro_avg": {
+            "precision": 0.9697,
+            "recall": 0.9667,
+            "f1_score": 0.9666
+        },
+        "per_class": {
+            "setosa": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1_score": 1.0,
+                "support": 10
+            },
+            "versicolor": {
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1_score": 0.9474,
+                "support": 10
+            },
+            "virginica": {
+                "precision": 0.9091,
+                "recall": 1.0,
+                "f1_score": 0.9524,
+                "support": 10
+            }
+        },
+        "confusion_matrix": [
+            [
+                10,
+                0,
+                0
+            ],
+            [
+                0,
+                9,
+                1
+            ],
+            [
+                0,
+                0,
+                10
+            ]
+        ],
+        "classes": [
+            "setosa",
+            "versicolor",
+            "virginica"
+        ]
+    },
+    "poly": {
+        "accuracy": 0.9667,
+        "macro_avg": {
+            "precision": 0.9697,
+            "recall": 0.9667,
+            "f1_score": 0.9666
+        },
+        "per_class": {
+            "setosa": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1_score": 1.0,
+                "support": 10
+            },
+            "versicolor": {
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1_score": 0.9474,
+                "support": 10
+            },
+            "virginica": {
+                "precision": 0.9091,
+                "recall": 1.0,
+                "f1_score": 0.9524,
+                "support": 10
+            }
+        },
+        "confusion_matrix": [
+            [
+                10,
+                0,
+                0
+            ],
+            [
+                0,
+                9,
+                1
+            ],
+            [
+                0,
+                0,
+                10
+            ]
+        ],
+        "classes": [
+            "setosa",
+            "versicolor",
+            "virginica"
+        ]
+    },
+    "sigmoid": {
+        "accuracy": 0.1,
+        "macro_avg": {
+            "precision": 0.05,
+            "recall": 0.1,
+            "f1_score": 0.0667
+        },
+        "per_class": {
+            "setosa": {
+                "precision": 0.15,
+                "recall": 0.3,
+                "f1_score": 0.2,
+                "support": 10
+            },
+            "versicolor": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1_score": 0.0,
+                "support": 10
+            },
+            "virginica": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1_score": 0.0,
+                "support": 10
+            }
+        },
+        "confusion_matrix": [
+            [
+                3,
+                0,
+                7
+            ],
+            [
+                7,
+                0,
+                3
+            ],
+            [
+                10,
+                0,
+                0
+            ]
+        ],
+        "classes": [
+            "setosa",
+            "versicolor",
+            "virginica"
+        ]
+    }
+}

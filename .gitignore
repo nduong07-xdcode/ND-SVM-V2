@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.FastAPI/
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# LaTeX temporary files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# OS
+.DS_Store
+Thumbs.db
