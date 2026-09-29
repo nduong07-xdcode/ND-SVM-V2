@@ -1210,8 +1210,18 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 	Hệ thống cung cấp các biểu đồ nhằm trực quan hóa kết quả dự đoán. Trong khu vực dự đoán, người dùng có thể quan sát biểu đồ phân phối mẫu dưới dạng biểu đồ điểm 2D.
 	
 	Các điểm dữ liệu được tích lũy theo quá trình dự đoán, giúp người dùng quan sát sự phân bố của các mẫu theo từng lớp. Ngoài ra, hệ thống còn cung cấp biểu đồ thống kê phân phối số lượng các loại hoa.
+
 	
-	Người dùng có thể lựa chọn các thuộc tính trên trục X và trục Y để thay đổi cách biểu diễn dữ liệu. Chức năng \textbf{Xóa dữ liệu biểu đồ} được sử dụng khi muốn bắt đầu một quá trình quan sát mới. :contentReference[oaicite:7]{index=7}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{"D:/DA1 project/PDF BAO CAO/bc_images/a10.jpg"}
+		\caption{ Biểu đồ trực quan phân phối mẫu Scatter}
+		\label{fig:a5}
+	\end{figure}
+	
+		
+	Người dùng có thể lựa chọn các thuộc tính trên trục X và trục Y để thay đổi cách biểu diễn dữ liệu. Chức năng \textbf{Xóa dữ liệu biểu đồ} được sử dụng khi muốn bắt đầu một quá trình quan sát mới.
 	
 	\section{Hướng dẫn sử dụng lịch sử}
 	
@@ -1219,6 +1229,7 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 	
 	Người dùng chọn mục \textbf{Lịch sử sử dụng} trên thanh điều hướng. Hệ thống hiển thị các kết quả đã thực hiện trước đó.
 	
+	\noindent
 	Đối với lịch sử nhập thủ công, thông tin hiển thị gồm:
 	\begin{itemize}
 		\item Kết quả phân loại.
@@ -1227,7 +1238,8 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 		\item Thời gian thực hiện dự đoán.
 	\end{itemize}
 	
-	Đối với lịch sử tải file, hệ thống hiển thị tên file, thời gian thực hiện và số lượng mẫu thuộc từng loại hoa. :contentReference[oaicite:8]{index=8}
+	Đối với lịch sử tải file, hệ thống hiển thị tên file, thời gian thực hiện và số lượng mẫu thuộc từng loại hoa. 
+	
 	
 	\subsection{Lọc lịch sử theo loại hoa}
 	
@@ -1238,7 +1250,12 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 		\item Iris Versicolor.
 		\item Iris Virginica.
 	\end{itemize}
-	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{"D:/DA1 project/PDF BAO CAO/bc_images/a11.jpg"}
+		\caption{ Lịch sử lọc theo loài}
+		\label{fig:a5}
+	\end{figure}
 	Chức năng này giúp người dùng nhanh chóng tìm kiếm các kết quả dự đoán thuộc một lớp cụ thể.
 	
 	\subsection{So sánh các mẫu dữ liệu}
@@ -1254,7 +1271,7 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 		\item Quan sát kết quả so sánh trên giao diện.
 	\end{enumerate}
 	
-	Chức năng này giúp người dùng đối chiếu các mẫu dữ liệu và kết quả dự đoán trong cùng một lần thao tác. :contentReference[oaicite:9]{index=9}
+	Chức năng này giúp người dùng đối chiếu các mẫu dữ liệu và kết quả dự đoán trong cùng một lần thao tác. 
 	
 	\subsection{Xóa lịch sử và đặt lại hệ thống}
 	
@@ -1273,8 +1290,7 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 		\item Đặt lại trạng thái trang Web.
 	\end{itemize}
 	
-	Các chức năng này giúp giao diện linh hoạt hơn và thuận tiện cho quá trình sử dụng. Hệ thống hiện hỗ trợ hai ngôn ngữ tiếng Việt và tiếng Anh cho các thành phần chính trên giao diện. :contentReference[oaicite:10]{index=10}
-	
+	Các chức năng này giúp giao diện linh hoạt hơn và thuận tiện cho quá trình sử dụng. Hệ thống hiện hỗ trợ hai ngôn ngữ tiếng Việt và tiếng Anh cho các thành phần chính trên giao diện. 
 	\section{Quy trình sử dụng tổng quát}
 	
 	Quy trình sử dụng hệ thống có thể được tóm tắt như sau:
@@ -1286,6 +1302,9 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 	\rightarrow
 	\text{Gửi yêu cầu dự đoán}
 	\rightarrow
+	\]
+	
+	\[
 	\text{SVM phân loại}
 	\rightarrow
 	\text{Hiển thị kết quả}
@@ -1299,11 +1318,7 @@ Trong sản phẩm, mô hình được sử dụng để phân loại dữ liệ
 	
 	Sau mỗi lần dự đoán, kết quả được hiển thị trên giao diện và thông tin tương ứng được ghi nhận trong lịch sử. Người dùng có thể tiếp tục thực hiện các dự đoán khác, xem biểu đồ hoặc sử dụng chức năng lọc và so sánh.
 	
-	\section{Kết luận chương}
 	
-	Chương này đã trình bày quá trình demo và hướng dẫn sử dụng hệ thống Web phân loại hoa Iris. Giao diện cung cấp các chức năng từ giới thiệu dữ liệu, nhập dữ liệu, dự đoán, tải file, trực quan hóa đến quản lý lịch sử.
-	
-	Thông qua giao diện Web, mô hình SVM được đưa vào một quy trình sử dụng trực quan, giúp người dùng có thể tương tác với mô hình mà không cần trực tiếp thực hiện các câu lệnh Python hoặc gọi API thủ công. Hệ thống đồng thời cung cấp các chức năng hỗ trợ như lọc, so sánh, xem lịch sử và thay đổi giao diện, qua đó hoàn thiện sản phẩm từ mô hình học máy thành một ứng dụng Web có khả năng sử dụng thực tế.
 	
 	
 	\newpage
