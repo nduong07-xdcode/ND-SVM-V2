@@ -5,11 +5,24 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(
     title="IRIS SVM Multi-Kernel & Evaluation API",
-    description="API Phân loại hoa Iris kết hợp Endpoint đánh giá mô hình khoa học (Accuracy, Precision, Recall, F1, Confusion Matrix)",
+    description="API Phân loại hoa Iris kết hợp Endpoint đánh giá mô hình ",
     version="2.1.0"
+)
+
+# Đường dẫn thư mục frontend
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.join(BASE_DIR, "..", "iris-frontend")
+
+# Phục vụ thư mục images
+app.mount(
+    "/images",
+    StaticFiles(directory=os.path.join(FRONTEND_DIR, "images")),
+    name="images"
 )
 
 # --- BẬT CORS ĐỂ TRANG WEB HTML KHÔNG BỊ CHẶN BỞI TRÌNH DUYỆT ---
@@ -64,11 +77,9 @@ species = {
 # --- 3. CÁC ENDPOINT API ---
 @app.get("/")
 def home():
-    return {
-        "message": "IRIS SVM Multi-Kernel & Evaluation API is running!",
-        "available_models": list(models.keys()),
-        "has_metrics": bool(metrics_data)
-    }
+    return FileResponse(
+        os.path.join(FRONTEND_DIR, "index.html")
+    )
 
 @app.get("/health")
 def health():
