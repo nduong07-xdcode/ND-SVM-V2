@@ -5,8 +5,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI(
     title="IRIS SVM Multi-Kernel & Evaluation API",
@@ -14,25 +13,29 @@ app = FastAPI(
     version="2.1.0"
 )
 
-# Đường dẫn thư mục frontend
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_DIR = os.path.join(BASE_DIR, "..", "iris-frontend")
 
-# Phục vụ thư mục images
-app.mount(
-    "/images",
-    StaticFiles(directory=os.path.join(FRONTEND_DIR, "images")),
-    name="images"
-)
 
-# --- BẬT CORS ĐỂ TRANG WEB HTML KHÔNG BỊ CHẶN BỞI TRÌNH DUYỆT ---
+
+# --- CẤU HÌNH CORS CHO FRONTEND VÀ BACKEND RIÊNG BIỆT ---
+
+frontend_url = os.getenv("FRONTEND_URL", "").strip().rstrip("/")
+
+allowed_origins = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+]
+
+if frontend_url:
+    allowed_origins.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
 
 # --- 1. TẢI CÁC MÔ HÌNH VÀ CÁC CHỈ SỐ ĐÁNH GIÁ VÀO BỘ NHỚ ---
 model_files = {
@@ -75,11 +78,21 @@ species = {
 }
 
 # --- 3. CÁC ENDPOINT API ---
+
 @app.get("/")
 def home():
-    return FileResponse(
-        os.path.join(FRONTEND_DIR, "index.html")
-    )
+    return {
+        "message": "IRIS SVM API is running",
+        "version": "2.1.0",
+        "status": "online",
+        "available_endpoints": [
+            "/health",
+            "/predict",
+            "/metrics",
+            "/docs"
+        ]
+    }
+
 
 @app.get("/health")
 def health():
