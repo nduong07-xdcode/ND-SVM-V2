@@ -1810,8 +1810,29 @@
                     </div>
 
                     <div id="sub-file" class="sub-section">
-                        <p id="t2-sub2-desc" style="font-size: 13px; color: var(--muted-color); margin-bottom: 15px;">Tải lên tệp chứa dữ liệu mẫu dưới định dạng `.csv` hoặc `.txt` để dự đoán hàng loạt.</p>
-                        
+
+                        <p id="t2-sub2-desc" style="font-size: 13px; color: var(--muted-color); margin-bottom: 15px;"></p> 
+
+                        <!-- TẢI DỮ LIỆU IRIS TỪ SUPABASE -->
+                        <div class="input-group">
+                            <label>Bộ dữ liệu mẫu Iris:</label>
+
+                            <p style="font-size:13px; color:var(--muted-color);">
+                                Tải bộ dữ liệu Iris có nhãn về máy.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="btn-primary"
+                                onclick="downloadIrisCSV()"
+                                style="margin-top:8px;"
+                            >
+                                <i class="fa-solid fa-download"></i>
+                                Tải file Iris CSV
+                            </button>
+                        </div>
+
+
                         <div class="input-group">
                             <label>Loại định dạng file dữ liệu:</label>
                             <select id="file-type-select">
@@ -2122,6 +2143,129 @@
         const SUPABASE_URL = 'https://nikxisedmidfcghmsfxg.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pa3hpc2VkbWlkZmNnaG1zZnhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA0MjUyNDIsImV4cCI6MjEwNjAwMTI0Mn0.nNH2KPvKJJZHbfmOdfyqhHQZCqJXyUwRvGuHsRHCsIw';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        
+
+        // ĐỌC DỮ LIỆU IRIS TỪ SUPABASE POSTGRESQL
+
+
+        let irisDataset = [];
+
+        async function loadIrisDataset() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('iris_dataset')
+                    .select('*')
+                    .range(0, 999);
+
+                if (error) {
+                    throw error;
+                }
+
+                irisDataset = data || [];
+
+                console.log(
+                    "Đã tải dữ liệu Iris từ Supabase:",
+                    irisDataset.length,
+                    "mẫu"
+                );
+
+                return irisDataset;
+
+            } catch (error) {
+                console.error(
+                    "Lỗi tải dữ liệu Iris:",
+                    error.message
+                );
+
+                return [];
+            }
+        }
+
+        // Cho phép kiểm tra dữ liệu từ DevTools
+        window.loadIrisDataset = loadIrisDataset;
+
+        
+
+        // TẢI FILE IRIS CSV TỪ SUPABASE VỀ MÁY
+      
+
+        async function downloadIrisCSV() {
+            try {
+                // Lấy dữ liệu mới nhất từ Supabase
+                const data = await loadIrisDataset();
+
+                if (!data || data.length === 0) {
+                    alert("Không có dữ liệu Iris để tải!");
+                    return;
+                }
+
+                // Tên cột đúng theo bảng iris_dataset
+                const columns = [
+                    "sepal_length",
+                    "sepal_width",
+                    "petal_length",
+                    "petal_width",
+                    "species"
+                ];
+
+                // Chuyển dữ liệu thành CSV
+                const escapeCSV = (value) => {
+                    const text = String(value ?? "");
+
+                    // Escape theo định dạng CSV
+                    if (/[",\r\n]/.test(text)) {
+                        return '"' + text.replace(/"/g, '""') + '"';
+                    }
+
+                    return text;
+                };
+
+                const csvRows = [
+                    columns.join(","),
+                    ...data.map(row =>
+                        columns
+                            .map(col => escapeCSV(row[col]))
+                            .join(",")
+                    )
+                ];
+
+                const csvContent = csvRows.join("\r\n");
+
+                // Tạo file CSV có hỗ trợ UTF-8
+                const blob = new Blob(
+                    ["\uFEFF", csvContent],
+                    { type: "text/csv;charset=utf-8;" }
+                );
+
+                // Tạo đường dẫn tải file tạm thời
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "iris_dataset.csv";
+
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                URL.revokeObjectURL(url);
+
+                console.log(
+                    `Đã tải ${data.length} mẫu Iris về máy.`
+                );
+
+            } catch (error) {
+                console.error("Lỗi tải CSV:", error);
+
+                alert(
+                    "Không thể tải dữ liệu Iris: " +
+                    error.message
+                );
+            }
+        }
+
+
 
         function switchAuthTab(formId, element) {
             document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
